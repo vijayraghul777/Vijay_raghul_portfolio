@@ -1,0 +1,28 @@
+This is a Dockerfile, which is a script used to create a Docker image. Docker images are like templates that contain everything needed to run a piece of software, including the code, a runtime, libraries, environment variables, and config files.
+
+Let's break down each line of this Dockerfile:
+
+1. `FROM nginx:alpine`
+   - This line specifies the base image to use for building this image. In this case, it uses the `nginx:alpine` image, which is a lightweight Linux distribution (Alpine) with the Nginx web server pre-installed.
+
+2. `WORKDIR /usr/share/nginx/html`
+   - This line sets the working directory inside the container. It means that when the container starts, it will default to the directory `/usr/share/nginx/html`.
+
+3. `COPY . .`
+   - This line copies the contents of the current directory (where the Dockerfile is located) into the `/usr/share/nginx/html` directory inside the container. This is where Nginx typically looks for files to serve.
+
+4. `EXPOSE 80`
+   - This line informs Docker that the container will listen on port 80 at runtime. However, it doesn't actually publish the port. It's more of a documentation for people who might use this image to know which ports to map.
+
+5. `CMD ["nginx", "-g", "daemon off;"]`
+   - This line sets the default command to be executed when a container starts from this image. It runs the Nginx web server with the parameters `-g "daemon off;"`. The `-g` flag allows passing configuration directives, and `"daemon off;"` keeps Nginx running in the foreground (as opposed to running as a background daemon).
+
+In summary, this Dockerfile is instructing Docker to:
+
+1. Use the `nginx:alpine` image as the base.
+2. Set the working directory to where Nginx expects its files.
+3. Copy the files from the current directory into the container.
+4. Inform Docker that the container will listen on port 80 (though it doesn't actually publish it by default).
+5. Start Nginx when a container is launched, and keep it running in the foreground.
+
+This Dockerfile essentially creates a containerized environment with an Nginx web server serving the files present in the same directory as the Dockerfile.
