@@ -12,4 +12,4 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2 # Use v2 instead of v3
       - name: Build the Docker image
-        run: docker build -t my-image-name:$(date +%s) -f Vijay Raghul/Dockerfile .
+        run: docker build -t my-image-name:$(date +%s) -f "Vijay Raghul/Dockerfile" .
